@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="main">
+    <h1>Todo List</h1>
+    <div class="cont-input">
+        <form action="/" method="POST">
+            <input type="text" placeholder="Add a new Task" name="todo">
+            <button type="submit" name="button_action" class="flex"><img
+                    src="{{ url_for('static', filename='assets/Plus.svg') }}" alt="add icon"></button>
+        </form>
+        <div class="text">Tasks to do - {{totalSno}} </div>
+        <div class="list">
+            <ul>
+                {% for todo in allTodo %}
+                <li>{{ todo.todo }}
+                    <div class="icon">
+                        <form action="/done/{{todo.sno}}" method="POST">
+                            <button type="submit" name="update_action" class="flex"><img
+                                    src="{{ url_for('static', filename='assets/Check.svg') }}" alt="check"></button>
+                        </form>
+                        <form action="/delete/{{ todo.sno }}" method="POST">
+                            <button type="submit" name="delete_action">
+                                <img src="{{ url_for('static', filename='assets/TrashSimple.svg') }}" alt="delete">
+                            </button>
+                        </form>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="text-done">Done - {{totalSnoDone}}</div>
+        <div class="list-done">
+            <ul>
+                {% for todo in allDone %}
+                <li>{{todo.done}}
+                    <div class="icon">
+                        <form action="/delete-done/{{ todo.sno }}" method="POST">
+                            <button type="submit" name="delete_action">
+                                <img src="{{ url_for('static', filename='assets/TrashSimple.svg') }}" alt="delete">
+                            </button>
+                        </form>
+                    </div>
+                </li>
+
+                {% endfor %}
+
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock body %}
