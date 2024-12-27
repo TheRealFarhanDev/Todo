@@ -6,6 +6,9 @@
     box-sizing: border-box;
     list-style: none;
 }
+html{
+    height: -webkit-fill-available;
+}
 
 body {
     background-color: #0D0714;
@@ -16,6 +19,7 @@ body {
     font-family: "Inter", serif;
     font-weight: 400;
     color: white;
+    height: -webkit-fill-available;
 }
 
 .flex {
